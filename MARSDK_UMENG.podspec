@@ -15,11 +15,12 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/lizhigang6/MARSDK_UMENG.git', :tag => s.version.to_s }
   s.resources =  'MARSDK_UMENG/SDK/*'
   s.frameworks = "SystemConfiguration","CoreTelephony"
-  s.libraries = "libsqlite3","libz" 
+  s.ios.library = "libsqlite3","libz" 
   s.vendored_libraries =  'MARSDK_UMENG/Classes/libMARSDK_UMENG.a'
   s.resource_bundles = {
      'UMCommonLog' => ['MARSDK_UMENG/Assets/*']
  }
+  s.static_framework = true
   s.ios.deployment_target = '10.0'
   s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }  
 
