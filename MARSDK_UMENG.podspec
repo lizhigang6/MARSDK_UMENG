@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/lizhigang6/MARSDK_UMENG.git', :tag => s.version.to_s }
   s.resources =  'MARSDK_UMENG/SDK/*'
   s.frameworks = "SystemConfiguration","CoreTelephony"
-  s.ios.library = "libsqlite3","libz" 
+  s.ios.library = "sqlite3","z" 
   s.vendored_libraries =  'MARSDK_UMENG/Classes/libMARSDK_UMENG.a'
   s.resource_bundles = {
      'UMCommonLog' => ['MARSDK_UMENG/Assets/*']
