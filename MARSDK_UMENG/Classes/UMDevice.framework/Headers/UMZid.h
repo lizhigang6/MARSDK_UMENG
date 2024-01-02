@@ -4,7 +4,7 @@
 //
 //  Created by UMZid on 8/29/20.
 //  Copyright © 2020 UMZid. All rights reserved.
-// v2.2.1
+// v3.3.0
 
 #import <Foundation/Foundation.h>
 
@@ -26,4 +26,8 @@
 
 /// 获得at
 + (NSString *)getATStr;
+
+/// 配置自定义域名（需在初始化之前设置,本地会缓存）
+/// @param domain 域名字符串 如：https://www.xxxxxx.com
++ (void)configureDomain:(NSString *)domain;
 @end
