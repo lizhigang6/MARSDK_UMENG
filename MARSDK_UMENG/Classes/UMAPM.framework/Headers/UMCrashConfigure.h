@@ -11,13 +11,34 @@ typedef NSString *_Nullable(^CallbackBlock)(void);
 FOUNDATION_EXPORT NSString * _Nonnull const UMReportExceptionNameForCSharp;
 @class UMAPMConfig;
 
+typedef NS_ENUM(NSInteger, UMCrashType)
+{
+    /* 崩溃 */
+    UMCrashTypeException      = 0x01,
+    
+    /* 卡顿 */
+    UMCrashTypeBlock          = 0x02,
+    
+    /* 自定义错误 */
+    UMCrashTypeUserReported   = 0x03,
+    
+    /* 其他 */
+    UMCrashTypeOther           = 0x04,
+};
+typedef NSString *_Nullable(^CrashCallBackBlock)(UMCrashType type);
+
 @interface UMCrashConfigure : NSObject
 //获取sdk版本号
 + (NSString *_Nonnull)getVersion;
 
-//return字符串不能大于256字节，大于部分将被截取
+/**
+ *  异常回调，随异常信息一起上报。return字符串不能大于256字节
+ */
 + (void)setCrashCBBlock:(CallbackBlock _Nullable )cbBlock;
-
+/**
+ *  异常回调，随异常信息一起上报。不同于“setCrashCBBlock:”方法，回调中提供了异常类型，两个方法按需取一个实现即可。return字符串不能大于256字节。
+ */
++ (void)setCrashCallBackBlock:(CrashCallBackBlock _Nullable )cbBlock;
 
 /**
  *  设置自定义版本号和build版本号即子版本号 (需要在初始化appkey方法之前调用)
@@ -81,6 +102,13 @@ FOUNDATION_EXPORT NSString * _Nonnull const UMReportExceptionNameForCSharp;
                         reason:(NSString* _Nonnull)reason
                     stackTrace:(NSArray* _Nonnull)stackTrace;
 
-
+/**
+ *  增加自定义信息
+ *  设置此接口后，当发生崩溃、卡顿、自定义错误时会携带相应信息。如用户ID、直播房间号。注：一个生命周期最多支持设置10对
+ *  @key  NSString 键。
+ *  @value  NSString 值。
+ *
+ */
++ (void)addCustomInfoKey:(NSString *_Nonnull)key value:(NSString *_Nonnull)value;
 @end
 

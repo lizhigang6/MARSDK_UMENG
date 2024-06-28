@@ -51,7 +51,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) BOOL javaScriptBridgeEnable;
 
 
-
+/**
+ *  页面分析打通模块开关，默认开启
+ */
+@property (nonatomic,assign) BOOL pageMonitorEnable;
 
 /**
  *集成测试。
